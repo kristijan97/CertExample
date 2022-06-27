@@ -13,7 +13,7 @@ class Instance extends Model
 
     public function setup()
     {
-        echo "setup start";
+        echo "setup method - change tenant context | ";
         Config::set('database.connections.mysql.database', $this->database);
         DB::reconnect('mysql');
 
@@ -31,8 +31,7 @@ class Instance extends Model
 
     public static function inAllActiveSpaces($callback)
     {
-        echo "inAllActiveSpaces";
-        echo json_encode(Instance::active()->toSql());
+        echo "inAllActiveSpaces method | ";
         Instance::active()->each(function ($instance) use ($callback) {
             $instance->setup();
 

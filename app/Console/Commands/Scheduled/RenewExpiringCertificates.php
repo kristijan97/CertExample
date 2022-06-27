@@ -14,8 +14,9 @@ class RenewExpiringCertificates extends BaseCommand
 
     public function handle(): int
     {
-        echo "HIIIT";
-        echo json_encode(LetsEncryptCertificate::query()->get());
+        echo "Command Handle | Certificates to renew: ";
+        echo json_encode(LetsEncryptCertificate::requiresRenewal()->get()->count());
+        echo " | ";
 
         LetsEncryptCertificate::query()
                               ->requiresRenewal()
